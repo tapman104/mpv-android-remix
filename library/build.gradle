@@ -22,7 +22,7 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                groupId = 'com.github.YOUR_NAME'
+                groupId = 'com.github.tapman104'
                 artifactId = 'mpv-native-android'
                 version = '1.0.0'
 

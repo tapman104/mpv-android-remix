@@ -25,6 +25,10 @@ jobs:
           sudo apt-get install -y autoconf pkgconf libtool ninja-build python3-pip gperf nasm
           pip3 install meson --break-system-packages
 
+      - name: Get buildscripts hash
+        id: bs-hash
+        run: echo "hash=$(git rev-parse HEAD:buildscripts)" >> $GITHUB_OUTPUT
+
       - name: Cache mpv-android sdk
         id: cache-mpv-sdk
         uses: actions/cache@v4
@@ -32,7 +36,7 @@ jobs:
           path: |
             buildscripts/sdk/
             buildscripts/prefix/
-          key: ${{ runner.os }}-mpv-sdk-${{ github.sha }}
+          key: ${{ runner.os }}-mpv-sdk-${{ steps.bs-hash.outputs.hash }}
           restore-keys: |
             ${{ runner.os }}-mpv-sdk-
 
