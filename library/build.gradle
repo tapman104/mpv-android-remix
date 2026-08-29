@@ -1,0 +1,35 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
+
+android {
+    namespace 'com.mpv.nativeandroid'
+    compileSdk 35
+
+    defaultConfig {
+        minSdk 21
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDir 'src/main/jniLibs'
+        }
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId = 'com.github.YOUR_NAME'
+                artifactId = 'mpv-native-android'
+                version = '1.0.0'
+
+                afterEvaluate {
+                    from components.release
+                }
+            }
+        }
+    }
+}
